@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2019-04-13T22:26:16Z" product-name="mage2typo3">
+		<header/>
+		<body>
+			<trans-unit id="sku.description">
+				<source>sku</source>
+			</trans-unit>
+			<trans-unit id="created_at.description">
+				<source>createdAt</source>
+			</trans-unit>
+			<trans-unit id="updated_at.description">
+				<source>updatedAt</source>
+			</trans-unit>
+			<trans-unit id="name.description">
+				<source>name</source>
+			</trans-unit>
+			<trans-unit id="status.description">
+				<source>status</source>
+			</trans-unit>
+			<trans-unit id="tags.description">
+				<source>tags</source>
+			</trans-unit>
+			<trans-unit id="price.description">
+				<source>price</source>
+			</trans-unit>
+			<trans-unit id="description.description">
+				<source>description</source>
+			</trans-unit>
+			<trans-unit id="short_description.description">
+				<source>shortDescription</source>
+			</trans-unit>
+			<trans-unit id="categories.description">
+				<source>categories</source>
+			</trans-unit>
+			<trans-unit id="images.description">
+				<source>images</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

@@ -1,0 +1,29 @@
+{
+    "name": "graphodata/mage2typo3",
+    "type": "typo3-cms-extension",
+    "description": "supplies a product import from Magento 2 to Typo3",
+    "authors": [
+        {
+            "name": "Tobias Quadflieg",
+            "role": "Developer"
+        }
+    ],
+    "version": "1.0.0",
+    "require": {
+        "typo3/cms-core": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Graphodata\\Mage2typo3\\": "Classes"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Graphodata\\Mage2typo3\\Tests\\": "Tests"
+        }
+    },
+    "replace": {
+        "mage2typo3": "self.version",
+        "typo3-ter/mage2typo3": "self.version"
+    }
+}

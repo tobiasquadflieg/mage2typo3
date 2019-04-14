@@ -1,0 +1,253 @@
+{
+    "modules": [
+        {
+            "config": {
+                "position": [
+                    553,
+                    278
+                ]
+            },
+            "name": "New Model Object",
+            "value": {
+                "actionGroup": {
+                    "_default0_list": true,
+                    "_default1_show": true,
+                    "_default2_new_create": true,
+                    "_default3_edit_update": true,
+                    "_default4_delete": true,
+                    "customActions": []
+                },
+                "name": "Products",
+                "objectsettings": {
+                    "addDeletedField": true,
+                    "addHiddenField": true,
+                    "addStarttimeEndtimeFields": true,
+                    "aggregateRoot": true,
+                    "categorizable": false,
+                    "description": "",
+                    "mapToTable": "",
+                    "parentClass": "",
+                    "sorting": false,
+                    "type": "Entity",
+                    "uid": "508728839553"
+                },
+                "propertyGroup": {
+                    "properties": [
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": true,
+                            "propertyIsL10nModeExclude": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "sku",
+                            "propertyType": "String",
+                            "uid": "874244276946"
+                        },
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": true,
+                            "propertyIsL10nModeExclude": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "createdAt",
+                            "propertyType": "DateTime",
+                            "uid": "598045202386"
+                        },
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": true,
+                            "propertyIsL10nModeExclude": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "updatedAt",
+                            "propertyType": "DateTime",
+                            "uid": "298358111737"
+                        },
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": true,
+                            "propertyIsL10nModeExclude": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "name",
+                            "propertyType": "String",
+                            "uid": "683319861752"
+                        },
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": true,
+                            "propertyIsL10nModeExclude": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "status",
+                            "propertyType": "String",
+                            "uid": "1063843609797"
+                        },
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": true,
+                            "propertyIsL10nModeExclude": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "tags",
+                            "propertyType": "String",
+                            "uid": "1522424854933"
+                        },
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": true,
+                            "propertyIsL10nModeExclude": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "price",
+                            "propertyType": "Float",
+                            "uid": "1513184944302"
+                        },
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": true,
+                            "propertyIsL10nModeExclude": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "description",
+                            "propertyType": "Text",
+                            "uid": "331328424526"
+                        },
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": true,
+                            "propertyIsL10nModeExclude": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "shortDescription",
+                            "propertyType": "Text",
+                            "uid": "617072325777"
+                        }
+                    ]
+                },
+                "relationGroup": {
+                    "relations": [
+                        {
+                            "foreignRelationClass": "",
+                            "lazyLoading": false,
+                            "propertyIsExcludeField": true,
+                            "relationDescription": "",
+                            "relationName": "categories",
+                            "relationType": "zeroToMany",
+                            "relationWire": "",
+                            "renderType": "inline",
+                            "uid": "323785837740"
+                        },
+                        {
+                            "foreignRelationClass": "",
+                            "lazyLoading": false,
+                            "propertyIsExcludeField": true,
+                            "relationDescription": "",
+                            "relationName": "images",
+                            "relationType": "zeroToOne",
+                            "relationWire": "",
+                            "renderType": "selectSingleBox",
+                            "uid": "1283293131674"
+                        }
+                    ]
+                }
+            }
+        },
+        {
+            "config": {
+                "position": [
+                    231,
+                    245
+                ]
+            },
+            "name": "New Model Object",
+            "value": {
+                "actionGroup": {
+                    "_default0_list": true,
+                    "_default1_show": true,
+                    "_default2_new_create": false,
+                    "_default3_edit_update": true,
+                    "_default4_delete": true,
+                    "customActions": []
+                },
+                "name": "ProductCategories",
+                "objectsettings": {
+                    "addDeletedField": true,
+                    "addHiddenField": true,
+                    "addStarttimeEndtimeFields": true,
+                    "aggregateRoot": true,
+                    "categorizable": false,
+                    "description": "",
+                    "mapToTable": "",
+                    "parentClass": "",
+                    "sorting": false,
+                    "type": "Entity",
+                    "uid": "206309638903"
+                },
+                "propertyGroup": {
+                    "properties": [
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": true,
+                            "propertyIsL10nModeExclude": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "title",
+                            "propertyType": "String",
+                            "uid": "1199080122263"
+                        }
+                    ]
+                },
+                "relationGroup": {
+                    "relations": []
+                }
+            }
+        }
+    ],
+    "properties": {
+        "backendModules": [],
+        "description": "supplies a product import from Magento 2 to Typo3",
+        "emConf": {
+            "category": "plugin",
+            "custom_category": "",
+            "dependsOn": "typo3 => 9.5.0-9.5.99\n",
+            "disableLocalization": false,
+            "disableVersioning": false,
+            "skipGenerateDocumentationTemplate": false,
+            "sourceLanguage": "en",
+            "state": "alpha",
+            "targetVersion": "9.5.0-9.5.99",
+            "version": "1.0.0"
+        },
+        "extensionKey": "mage2typo3",
+        "name": "Mage2Typo3",
+        "originalExtensionKey": "mage2typo3",
+        "originalVendorName": "Graphodata",
+        "persons": [
+            {
+                "company": "Graphodata AG",
+                "email": "Quadflieg@graphodata.de",
+                "name": "Tobias Quadflieg",
+                "role": "Developer"
+            }
+        ],
+        "plugins": [],
+        "vendorName": "Graphodata"
+    },
+    "wires": [],
+    "log": {
+        "last_modified": "2019-04-13 10:26",
+        "extension_builder_version": "9.10.0",
+        "be_user": " (1)"
+    }
+}
