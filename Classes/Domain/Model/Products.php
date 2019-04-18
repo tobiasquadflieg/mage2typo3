@@ -82,17 +82,18 @@ class Products extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $shortDescription = '';
 
     /**
-     * categories
+     * Productcategory
      * 
-     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<>
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Graphodata\Mage2typo3\Domain\Model\ProductCategories>
      * @cascade remove
      */
     protected $categories = null;
 
     /**
-     * images
+     * Productimage
      * 
-     * @var
+     * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
+     * @cascade remove
      */
     protected $images = null;
 
@@ -117,6 +118,7 @@ class Products extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected function initStorageObjects()
     {
         $this->categories = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $this->images = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
     }
 
     /**
@@ -311,7 +313,7 @@ class Products extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Adds a
      * 
-     * @param  $category
+     * @param \Graphodata\Mage2typo3\Domain\Model\ProductCategories $category
      * @return void
      */
     public function addCategory($category)
@@ -322,7 +324,7 @@ class Products extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Removes a
      * 
-     * @param $categoryToRemove The  to be removed
+     * @param \Graphodata\Mage2typo3\Domain\Model\ProductCategories $categoryToRemove The ProductCategories to be removed
      * @return void
      */
     public function removeCategory($categoryToRemove)
@@ -333,7 +335,7 @@ class Products extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Returns the categories
      * 
-     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<> $categories
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Graphodata\Mage2typo3\Domain\Model\ProductCategories> categories
      */
     public function getCategories()
     {
@@ -343,7 +345,7 @@ class Products extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Sets the categories
      * 
-     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<> $categories
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Graphodata\Mage2typo3\Domain\Model\ProductCategories> $categories
      * @return void
      */
     public function setCategories(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $categories)
@@ -352,9 +354,31 @@ class Products extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
+     * Adds a FileReference
+     * 
+     * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $image
+     * @return void
+     */
+    public function addImage(\TYPO3\CMS\Extbase\Domain\Model\FileReference $image)
+    {
+        $this->images->attach($image);
+    }
+
+    /**
+     * Removes a FileReference
+     * 
+     * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $imageToRemove The FileReference to be removed
+     * @return void
+     */
+    public function removeImage(\TYPO3\CMS\Extbase\Domain\Model\FileReference $imageToRemove)
+    {
+        $this->images->detach($imageToRemove);
+    }
+
+    /**
      * Returns the images
      * 
-     * @return  $images
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference> $images
      */
     public function getImages()
     {
@@ -364,10 +388,10 @@ class Products extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Sets the images
      * 
-     * @param string $images
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference> $images
      * @return void
      */
-    public function setImages($images)
+    public function setImages(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $images)
     {
         $this->images = $images;
     }

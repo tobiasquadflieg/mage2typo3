@@ -68,6 +68,24 @@ class ProductCategoriesControllerTest extends \TYPO3\TestingFramework\Core\Unit\
     /**
      * @test
      */
+    public function createActionAddsTheGivenProductCategoriesToProductCategoriesRepository()
+    {
+        $productCategories = new \Graphodata\Mage2typo3\Domain\Model\ProductCategories();
+
+        $productCategoriesRepository = $this->getMockBuilder(\Graphodata\Mage2typo3\Domain\Repository\ProductCategoriesRepository::class)
+            ->setMethods(['add'])
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $productCategoriesRepository->expects(self::once())->method('add')->with($productCategories);
+        $this->inject($this->subject, 'productCategoriesRepository', $productCategoriesRepository);
+
+        $this->subject->createAction($productCategories);
+    }
+
+    /**
+     * @test
+     */
     public function editActionAssignsTheGivenProductCategoriesToView()
     {
         $productCategories = new \Graphodata\Mage2typo3\Domain\Model\ProductCategories();

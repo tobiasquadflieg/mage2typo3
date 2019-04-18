@@ -3,8 +3,8 @@
         {
             "config": {
                 "position": [
-                    553,
-                    278
+                    480,
+                    69
                 ]
             },
             "name": "New Model Object",
@@ -23,7 +23,7 @@
                     "addHiddenField": true,
                     "addStarttimeEndtimeFields": true,
                     "aggregateRoot": true,
-                    "categorizable": false,
+                    "categorizable": true,
                     "description": "",
                     "mapToTable": "",
                     "parentClass": "",
@@ -140,22 +140,22 @@
                             "foreignRelationClass": "",
                             "lazyLoading": false,
                             "propertyIsExcludeField": true,
-                            "relationDescription": "",
+                            "relationDescription": "Productcategory",
                             "relationName": "categories",
                             "relationType": "zeroToMany",
-                            "relationWire": "",
+                            "relationWire": "[wired]",
                             "renderType": "inline",
                             "uid": "323785837740"
                         },
                         {
-                            "foreignRelationClass": "",
+                            "foreignRelationClass": "\\TYPO3\\CMS\\Extbase\\Domain\\Model\\FileReference",
                             "lazyLoading": false,
                             "propertyIsExcludeField": true,
-                            "relationDescription": "",
+                            "relationDescription": "Productimage",
                             "relationName": "images",
-                            "relationType": "zeroToOne",
+                            "relationType": "zeroToMany",
                             "relationWire": "",
-                            "renderType": "selectSingleBox",
+                            "renderType": "inline",
                             "uid": "1283293131674"
                         }
                     ]
@@ -165,8 +165,8 @@
         {
             "config": {
                 "position": [
-                    231,
-                    245
+                    117,
+                    385
                 ]
             },
             "name": "New Model Object",
@@ -174,7 +174,7 @@
                 "actionGroup": {
                     "_default0_list": true,
                     "_default1_show": true,
-                    "_default2_new_create": false,
+                    "_default2_new_create": true,
                     "_default3_edit_update": true,
                     "_default4_delete": true,
                     "customActions": []
@@ -215,7 +215,28 @@
         }
     ],
     "properties": {
-        "backendModules": [],
+        "backendModules": [
+            {
+                "actions": {
+                    "controllerActionCombinations": "Be\\Import => settings,run,configure"
+                },
+                "description": "Import Settings for Magento2",
+                "key": "mage2import",
+                "mainModule": "tools",
+                "name": "Magento 2 Import",
+                "tabLabel": "Magento 2 Import"
+            },
+            {
+                "actions": {
+                    "controllerActionCombinations": "Be\\Products => list,show\nBe\\Categories => list,show"
+                },
+                "description": "Products form Magento 2",
+                "key": "mage2products",
+                "mainModule": "web",
+                "name": "Magento 2 Products",
+                "tabLabel": "Magento 2 Products"
+            }
+        ],
         "description": "supplies a product import from Magento 2 to Typo3",
         "emConf": {
             "category": "plugin",
@@ -241,12 +262,36 @@
                 "role": "Developer"
             }
         ],
-        "plugins": [],
+        "plugins": [
+            {
+                "actions": {
+                    "controllerActionCombinations": "products => list,show,detail\ncategories => list,show,detail",
+                    "noncacheableActions": "",
+                    "switchableActions": "Display Items\nProducts->list; Products->show; Products->detail; Categories->list; Categories->show; Categories->detail;"
+                },
+                "description": "Show imported Products form Magento 2",
+                "key": "mage2products",
+                "name": "Magento 2 Product"
+            }
+        ],
         "vendorName": "Graphodata"
     },
-    "wires": [],
+    "wires": [
+        {
+            "src": {
+                "moduleId": 0,
+                "terminal": "relationWire_0",
+                "uid": "323785837740"
+            },
+            "tgt": {
+                "moduleId": 1,
+                "terminal": "SOURCES",
+                "uid": "206309638903"
+            }
+        }
+    ],
     "log": {
-        "last_modified": "2019-04-13 10:26",
+        "last_modified": "2019-04-18 09:23",
         "extension_builder_version": "9.10.0",
         "be_user": " (1)"
     }

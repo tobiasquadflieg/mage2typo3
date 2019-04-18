@@ -126,5 +126,10 @@ return [
             ],
         ],
     
+        'products' => [
+            'config' => [
+                'type' => 'passthrough',
+            ],
+        ],
     ],
 ];

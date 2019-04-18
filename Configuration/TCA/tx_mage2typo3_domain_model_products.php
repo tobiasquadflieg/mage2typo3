@@ -208,7 +208,7 @@ return [
             'label' => 'LLL:EXT:mage2typo3/Resources/Private/Language/locallang_db.xlf:tx_mage2typo3_domain_model_products.categories',
             'config' => [
                 'type' => 'inline',
-                'foreign_table' => '',
+                'foreign_table' => 'tx_mage2typo3_domain_model_productcategories',
                 'foreign_field' => 'products',
                 'maxitems' => 9999,
                 'appearance' => [
@@ -226,9 +226,9 @@ return [
             'label' => 'LLL:EXT:mage2typo3/Resources/Private/Language/locallang_db.xlf:tx_mage2typo3_domain_model_products.images',
             'config' => [
                 'type' => 'inline',
-                'foreign_table' => '',
-                'minitems' => 0,
-                'maxitems' => 1,
+                'foreign_table' => 'sys_file_reference',
+                'foreign_field' => 'products',
+                'maxitems' => 9999,
                 'appearance' => [
                     'collapseAll' => 0,
                     'levelLinksPosition' => 'top',
@@ -237,6 +237,7 @@ return [
                     'showAllLocalizationLink' => 1
                 ],
             ],
+
         ],
     
     ],

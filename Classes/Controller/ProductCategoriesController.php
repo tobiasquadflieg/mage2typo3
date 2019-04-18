@@ -85,4 +85,26 @@ class ProductCategoriesController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
         $this->productCategoriesRepository->remove($productCategories);
         $this->redirect('list');
     }
+
+    /**
+     * action new
+     * 
+     * @return void
+     */
+    public function newAction()
+    {
+    }
+
+    /**
+     * action create
+     * 
+     * @param \Graphodata\Mage2typo3\Domain\Model\ProductCategories $newProductCategories
+     * @return void
+     */
+    public function createAction(\Graphodata\Mage2typo3\Domain\Model\ProductCategories $newProductCategories)
+    {
+        $this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/typo3cms/extensions/extension_builder/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
+        $this->productCategoriesRepository->add($newProductCategories);
+        $this->redirect('list');
+    }
 }

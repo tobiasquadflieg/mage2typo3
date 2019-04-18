@@ -256,7 +256,7 @@ class ProductsTest extends \TYPO3\TestingFramework\Core\Unit\UnitTestCase
     /**
      * @test
      */
-    public function getCategoriesReturnsInitialValueFor()
+    public function getCategoriesReturnsInitialValueForProductCategories()
     {
         $newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         self::assertEquals(
@@ -268,9 +268,9 @@ class ProductsTest extends \TYPO3\TestingFramework\Core\Unit\UnitTestCase
     /**
      * @test
      */
-    public function setCategoriesForObjectStorageContainingSetsCategories()
+    public function setCategoriesForObjectStorageContainingProductCategoriesSetsCategories()
     {
-        $category = new ();
+        $category = new \Graphodata\Mage2typo3\Domain\Model\ProductCategories();
         $objectStorageHoldingExactlyOneCategories = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
         $objectStorageHoldingExactlyOneCategories->attach($category);
         $this->subject->setCategories($objectStorageHoldingExactlyOneCategories);
@@ -287,7 +287,7 @@ class ProductsTest extends \TYPO3\TestingFramework\Core\Unit\UnitTestCase
      */
     public function addCategoryToObjectStorageHoldingCategories()
     {
-        $category = new ();
+        $category = new \Graphodata\Mage2typo3\Domain\Model\ProductCategories();
         $categoriesObjectStorageMock = $this->getMockBuilder(\TYPO3\CMS\Extbase\Persistence\ObjectStorage::class)
             ->setMethods(['attach'])
             ->disableOriginalConstructor()
@@ -304,7 +304,7 @@ class ProductsTest extends \TYPO3\TestingFramework\Core\Unit\UnitTestCase
      */
     public function removeCategoryFromObjectStorageHoldingCategories()
     {
-        $category = new ();
+        $category = new \Graphodata\Mage2typo3\Domain\Model\ProductCategories();
         $categoriesObjectStorageMock = $this->getMockBuilder(\TYPO3\CMS\Extbase\Persistence\ObjectStorage::class)
             ->setMethods(['detach'])
             ->disableOriginalConstructor()
@@ -319,14 +319,63 @@ class ProductsTest extends \TYPO3\TestingFramework\Core\Unit\UnitTestCase
     /**
      * @test
      */
-    public function getImagesReturnsInitialValueFor()
+    public function getImagesReturnsInitialValueForFileReference()
     {
+        $newObjectStorage = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        self::assertEquals(
+            $newObjectStorage,
+            $this->subject->getImages()
+        );
     }
 
     /**
      * @test
      */
-    public function setImagesForSetsImages()
+    public function setImagesForFileReferenceSetsImages()
     {
+        $image = new \TYPO3\CMS\Extbase\Domain\Model\FileReference();
+        $objectStorageHoldingExactlyOneImages = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage();
+        $objectStorageHoldingExactlyOneImages->attach($image);
+        $this->subject->setImages($objectStorageHoldingExactlyOneImages);
+
+        self::assertAttributeEquals(
+            $objectStorageHoldingExactlyOneImages,
+            'images',
+            $this->subject
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function addImageToObjectStorageHoldingImages()
+    {
+        $image = new \TYPO3\CMS\Extbase\Domain\Model\FileReference();
+        $imagesObjectStorageMock = $this->getMockBuilder(\TYPO3\CMS\Extbase\Persistence\ObjectStorage::class)
+            ->setMethods(['attach'])
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $imagesObjectStorageMock->expects(self::once())->method('attach')->with(self::equalTo($image));
+        $this->inject($this->subject, 'images', $imagesObjectStorageMock);
+
+        $this->subject->addImage($image);
+    }
+
+    /**
+     * @test
+     */
+    public function removeImageFromObjectStorageHoldingImages()
+    {
+        $image = new \TYPO3\CMS\Extbase\Domain\Model\FileReference();
+        $imagesObjectStorageMock = $this->getMockBuilder(\TYPO3\CMS\Extbase\Persistence\ObjectStorage::class)
+            ->setMethods(['detach'])
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $imagesObjectStorageMock->expects(self::once())->method('detach')->with(self::equalTo($image));
+        $this->inject($this->subject, 'images', $imagesObjectStorageMock);
+
+        $this->subject->removeImage($image);
     }
 }

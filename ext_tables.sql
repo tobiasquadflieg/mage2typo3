@@ -13,7 +13,7 @@ CREATE TABLE tx_mage2typo3_domain_model_products (
 	description text,
 	short_description text,
 	categories int(11) unsigned DEFAULT '0' NOT NULL,
-	images int(11) unsigned DEFAULT '0',
+	images int(11) unsigned DEFAULT '0' NOT NULL,
 
 );
 
@@ -22,6 +22,24 @@ CREATE TABLE tx_mage2typo3_domain_model_products (
 #
 CREATE TABLE tx_mage2typo3_domain_model_productcategories (
 
+	products int(11) unsigned DEFAULT '0' NOT NULL,
+
 	title varchar(255) DEFAULT '' NOT NULL,
 
+);
+
+#
+# Table structure for table 'tx_mage2typo3_domain_model_productcategories'
+#
+CREATE TABLE tx_mage2typo3_domain_model_productcategories (
+
+	products int(11) unsigned DEFAULT '0' NOT NULL,
+
+);
+
+#
+# Table structure for table 'tx_mage2typo3_domain_model_products'
+#
+CREATE TABLE tx_mage2typo3_domain_model_products (
+	categories int(11) unsigned DEFAULT '0' NOT NULL,
 );
