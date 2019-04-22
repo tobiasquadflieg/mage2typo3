@@ -1,0 +1,77 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Import"/>
+
+This Template is responsible for creating a table of domain objects.
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+Resources:
+Private:
+Templates:
+List.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="content">
+
+    <div class="my-3 p-3 bg-white rounded shadow-sm">
+        <h1 class="border-bottom border-gray pb-2 mb-0">Listing for Import Configuration</h1>
+        <div class="media text-muted pt-3">
+            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                    <strong class="d-block text-gray-dark">Configurationame</strong>
+                </div>
+            </div>
+        </div>
+        <f:for each="{importConfigurations}" as="importConfiguration">
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="d-block text-gray-dark">
+                            <f:link.action action="show" arguments="{importConfiguration : importConfiguration}">
+                                {importConfiguration.name}
+                            </f:link.action>
+                        </strong>
+                            <f:link.action class="btn btn-primary btn-sm  text-white" action="edit"
+                                           arguments="{importConfiguration : importConfiguration}">
+                                Edit
+                            </f:link.action>
+                            <f:link.action class="btn btn-primary btn-sm  text-white" action="delete"
+                                           arguments="{importConfiguration : importConfiguration}">
+                                Delete
+                            </f:link.action>
+                            <f:link.action class="btn btn-primary btn-sm text-white" action="run"
+                                           arguments="{importConfiguration : importConfiguration}">
+                                Run Import
+                            </f:link.action>
+                    </div>
+                    <div class="d-block mt-2">
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25"
+                                 aria-valuemin="0"
+                                 aria-valuemax="100">25%
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </f:for>
+    </div>
+    <div class="my-3 p-3 bg-white rounded shadow-sm">
+        <f:flashMessages/>
+        <div class="media text-muted pt-3">
+            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                    <f:link.action action="new">New Import Configuration</f:link.action>
+                </div>
+            </div>
+            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                    <f:link.action action="new" controller="Shop">New Shop Configuration</f:link.action>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</f:section>
+</html>

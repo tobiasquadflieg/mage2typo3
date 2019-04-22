@@ -7,15 +7,17 @@ call_user_func(
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
             'Graphodata.Mage2typo3',
-            'Mage2products',
+            'Product',
             [
-                'products' => 'list, show, detail',
-                'categories' => 'list, show, detail'
+                'Product' => 'list, show, detail',
+                'ProductCategory' => 'list, show, detail'
             ],
             // non-cacheable actions
             [
-                'Products' => 'create, update, delete',
-                'ProductCategories' => 'create, update, delete'
+                'Product' => 'create, update, delete',
+                'ProductCategory' => 'create, update, delete',
+                'Shop' => 'create, update, delete',
+                'ImportConfiguration' => 'create, update, delete'
             ]
         );
 
@@ -24,13 +26,13 @@ call_user_func(
         'mod {
             wizards.newContentElement.wizardItems.plugins {
                 elements {
-                    mage2products {
-                        iconIdentifier = mage2typo3-plugin-mage2products
-                        title = LLL:EXT:mage2typo3/Resources/Private/Language/locallang_db.xlf:tx_mage2typo3_mage2products.name
-                        description = LLL:EXT:mage2typo3/Resources/Private/Language/locallang_db.xlf:tx_mage2typo3_mage2products.description
+                    product {
+                        iconIdentifier = mage2typo3-plugin-product
+                        title = LLL:EXT:mage2typo3/Resources/Private/Language/locallang_db.xlf:tx_mage2typo3_product.name
+                        description = LLL:EXT:mage2typo3/Resources/Private/Language/locallang_db.xlf:tx_mage2typo3_product.description
                         tt_content_defValues {
                             CType = list
-                            list_type = mage2typo3_mage2products
+                            list_type = mage2typo3_product
                         }
                     }
                 }
@@ -41,9 +43,9 @@ call_user_func(
 		$iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
 		
 			$iconRegistry->registerIcon(
-				'mage2typo3-plugin-mage2products',
+				'mage2typo3-plugin-product',
 				\TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
-				['source' => 'EXT:mage2typo3/Resources/Public/Icons/user_plugin_mage2products.svg']
+				['source' => 'EXT:mage2typo3/Resources/Public/Icons/user_plugin_product.svg']
 			);
 		
     }

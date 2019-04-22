@@ -1,0 +1,50 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:be.container includeJsFiles="{0: '{f:uri.resource(path: \'Backend/Boostrap/js/bootstrap.min.js\')}'}"
+                includeCssFiles="{0: '{f:uri.resource(path: \'Backend/Stylesheet/Backend.css\')}'}">
+    <div class="typo3-fullDoc bg-light">
+        <div id="typo3-docheader">
+            <div class="typo3-docheader-functions">
+                <div class="left">
+                    <f:be.buttons.csh/>
+                    <f:be.menus.actionMenu>
+                        <f:be.menus.actionMenuItem label="Overview" controller="" action="list"/>
+                        <f:be.menus.actionMenuItem label="Create new ImportConfiguration" action="new"
+                                                   controller="ImportConfiguration"/>
+                        <f:be.menus.actionMenuItem label="Overview new Shop" action="new" controller="Shop"/>
+                        <f:be.menus.actionMenuItem label="Create new Shop" action="new" controller="Shop"/>
+                    </f:be.menus.actionMenu>
+                </div>
+                <div class="right">
+                    <f:be.pagePath/>
+                    <f:be.pageInfo/>
+                </div>
+            </div>
+            <div class="typo3-docheader-buttons">
+                <div class="left">
+
+                </div>
+                <div class="right">
+                    <f:be.buttons.shortcut/>
+                </div>
+            </div>
+
+        </div>
+        <div class="container-fluid">
+            <div class="nav-scroller bg-white shadow-sm">
+                <nav class="nav nav-underline">
+                    <f:link.action class="nav-link" controller="" action="list">Overview Import Configuration
+                    </f:link.action>
+                    <f:link.action class="nav-link" action="new"
+                                   controller="ImportConfiguration">New Import Configuration
+                    </f:link.action>
+                    <f:link.action class="nav-link" action="new" controller="Shop">New Shop</f:link.action>
+                    <f:link.action class="nav-link" action="new" controller="Shop">Overview Shops</f:link.action>
+
+                </nav>
+            </div>
+            <f:flashMessages/>
+            <f:render section="content"/>
+        </div>
+    </div>
+</f:be.container>
+</html>

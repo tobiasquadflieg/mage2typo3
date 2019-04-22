@@ -1,54 +1,78 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2019-04-18T21:23:53Z" product-name="mage2typo3">
+	<file source-language="en" datatype="plaintext" original="messages" date="2019-04-20T11:06:14Z" product-name="mage2typo3">
 		<header/>
 		<body>
-			<trans-unit id="tx_mage2typo3_domain_model_products">
-				<source>Products</source>
+			<trans-unit id="tx_mage2typo3_domain_model_product">
+				<source>Product</source>
 			</trans-unit>
-			<trans-unit id="tx_mage2typo3_domain_model_products.sku">
+			<trans-unit id="tx_mage2typo3_domain_model_product.sku">
 				<source>Sku</source>
 			</trans-unit>
-			<trans-unit id="tx_mage2typo3_domain_model_products.created_at">
+			<trans-unit id="tx_mage2typo3_domain_model_product.created_at">
 				<source>Created At</source>
 			</trans-unit>
-			<trans-unit id="tx_mage2typo3_domain_model_products.updated_at">
+			<trans-unit id="tx_mage2typo3_domain_model_product.updated_at">
 				<source>Updated At</source>
 			</trans-unit>
-			<trans-unit id="tx_mage2typo3_domain_model_products.name">
+			<trans-unit id="tx_mage2typo3_domain_model_product.name">
 				<source>Name</source>
 			</trans-unit>
-			<trans-unit id="tx_mage2typo3_domain_model_products.status">
+			<trans-unit id="tx_mage2typo3_domain_model_product.status">
 				<source>Status</source>
 			</trans-unit>
-			<trans-unit id="tx_mage2typo3_domain_model_products.tags">
+			<trans-unit id="tx_mage2typo3_domain_model_product.tags">
 				<source>Tags</source>
 			</trans-unit>
-			<trans-unit id="tx_mage2typo3_domain_model_products.price">
+			<trans-unit id="tx_mage2typo3_domain_model_product.price">
 				<source>Price</source>
 			</trans-unit>
-			<trans-unit id="tx_mage2typo3_domain_model_products.description">
+			<trans-unit id="tx_mage2typo3_domain_model_product.description">
 				<source>Description</source>
 			</trans-unit>
-			<trans-unit id="tx_mage2typo3_domain_model_products.short_description">
+			<trans-unit id="tx_mage2typo3_domain_model_product.short_description">
 				<source>Short Description</source>
 			</trans-unit>
-			<trans-unit id="tx_mage2typo3_domain_model_products.categories">
+			<trans-unit id="tx_mage2typo3_domain_model_product.product_image">
+				<source>Product Image</source>
+			</trans-unit>
+			<trans-unit id="tx_mage2typo3_domain_model_product.categories">
 				<source>Categories</source>
 			</trans-unit>
-			<trans-unit id="tx_mage2typo3_domain_model_products.images">
-				<source>Images</source>
+			<trans-unit id="tx_mage2typo3_domain_model_productcategory">
+				<source>Product Category</source>
 			</trans-unit>
-			<trans-unit id="tx_mage2typo3_domain_model_productcategories">
-				<source>Product Categories</source>
-			</trans-unit>
-			<trans-unit id="tx_mage2typo3_domain_model_productcategories.title">
+			<trans-unit id="tx_mage2typo3_domain_model_productcategory.title">
 				<source>Title</source>
 			</trans-unit>
-			<trans-unit id="tx_mage2typo3_mage2products.name">
+			<trans-unit id="tx_mage2typo3_domain_model_shop">
+				<source>Shop</source>
+			</trans-unit>
+			<trans-unit id="tx_mage2typo3_domain_model_shop.shop_name">
+				<source>Shop Name</source>
+			</trans-unit>
+			<trans-unit id="tx_mage2typo3_domain_model_shop.url">
+				<source>Url</source>
+			</trans-unit>
+			<trans-unit id="tx_mage2typo3_domain_model_shop.user_name">
+				<source>User Name</source>
+			</trans-unit>
+			<trans-unit id="tx_mage2typo3_domain_model_shop.password">
+				<source>Password</source>
+			</trans-unit>
+			<trans-unit id="tx_mage2typo3_domain_model_importconfiguration">
+				<source>Import Configuration</source>
+			</trans-unit>
+			<trans-unit id="tx_mage2typo3_domain_model_importconfiguration.name">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="tx_mage2typo3_domain_model_importconfiguration.shop">
+				<source>Shop</source>
+			</trans-unit>
+			<trans-unit id="tx_mage2typo3_product.name">
 				<source>Magento 2 Product</source>
 			</trans-unit>
-			<trans-unit id="tx_mage2typo3_mage2products.description">
+			<trans-unit id="tx_mage2typo3_product.description">
 				<source>Show imported Products form Magento 2</source>
 			</trans-unit>
 		</body>

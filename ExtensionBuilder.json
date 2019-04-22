@@ -3,8 +3,8 @@
         {
             "config": {
                 "position": [
-                    480,
-                    69
+                    327,
+                    25
                 ]
             },
             "name": "New Model Object",
@@ -17,7 +17,7 @@
                     "_default4_delete": true,
                     "customActions": []
                 },
-                "name": "Products",
+                "name": "Product",
                 "objectsettings": {
                     "addDeletedField": true,
                     "addHiddenField": true,
@@ -131,6 +131,17 @@
                             "propertyName": "shortDescription",
                             "propertyType": "Text",
                             "uid": "617072325777"
+                        },
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": true,
+                            "propertyIsL10nModeExclude": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "productImage",
+                            "propertyType": "Image",
+                            "uid": "142105429330"
                         }
                     ]
                 },
@@ -146,17 +157,6 @@
                             "relationWire": "[wired]",
                             "renderType": "inline",
                             "uid": "323785837740"
-                        },
-                        {
-                            "foreignRelationClass": "\\TYPO3\\CMS\\Extbase\\Domain\\Model\\FileReference",
-                            "lazyLoading": false,
-                            "propertyIsExcludeField": true,
-                            "relationDescription": "Productimage",
-                            "relationName": "images",
-                            "relationType": "zeroToMany",
-                            "relationWire": "",
-                            "renderType": "inline",
-                            "uid": "1283293131674"
                         }
                     ]
                 }
@@ -165,8 +165,8 @@
         {
             "config": {
                 "position": [
-                    117,
-                    385
+                    25,
+                    373
                 ]
             },
             "name": "New Model Object",
@@ -179,7 +179,7 @@
                     "_default4_delete": true,
                     "customActions": []
                 },
-                "name": "ProductCategories",
+                "name": "ProductCategory",
                 "objectsettings": {
                     "addDeletedField": true,
                     "addHiddenField": true,
@@ -212,26 +212,173 @@
                     "relations": []
                 }
             }
+        },
+        {
+            "config": {
+                "position": [
+                    616,
+                    333
+                ]
+            },
+            "name": "New Model Object",
+            "value": {
+                "actionGroup": {
+                    "_default0_list": true,
+                    "_default1_show": true,
+                    "_default2_new_create": true,
+                    "_default3_edit_update": true,
+                    "_default4_delete": true,
+                    "customActions": []
+                },
+                "name": "Shop",
+                "objectsettings": {
+                    "addDeletedField": true,
+                    "addHiddenField": true,
+                    "addStarttimeEndtimeFields": true,
+                    "aggregateRoot": true,
+                    "categorizable": false,
+                    "description": "",
+                    "mapToTable": "",
+                    "parentClass": "",
+                    "sorting": false,
+                    "type": "Entity",
+                    "uid": "868668249754"
+                },
+                "propertyGroup": {
+                    "properties": [
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": true,
+                            "propertyIsL10nModeExclude": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "shopName",
+                            "propertyType": "String",
+                            "uid": "382275503635"
+                        },
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": true,
+                            "propertyIsL10nModeExclude": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "url",
+                            "propertyType": "String",
+                            "uid": "1354707717468"
+                        },
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": true,
+                            "propertyIsL10nModeExclude": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "userName",
+                            "propertyType": "String",
+                            "uid": "1337132070090"
+                        },
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": true,
+                            "propertyIsL10nModeExclude": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "password",
+                            "propertyType": "String",
+                            "uid": "397246847319"
+                        }
+                    ]
+                },
+                "relationGroup": {
+                    "relations": []
+                }
+            }
+        },
+        {
+            "config": {
+                "position": [
+                    955,
+                    129
+                ]
+            },
+            "name": "New Model Object",
+            "value": {
+                "actionGroup": {
+                    "_default0_list": true,
+                    "_default1_show": false,
+                    "_default2_new_create": true,
+                    "_default3_edit_update": true,
+                    "_default4_delete": true,
+                    "customActions": []
+                },
+                "name": "ImportConfiguration",
+                "objectsettings": {
+                    "addDeletedField": true,
+                    "addHiddenField": true,
+                    "addStarttimeEndtimeFields": true,
+                    "aggregateRoot": true,
+                    "categorizable": false,
+                    "description": "",
+                    "mapToTable": "",
+                    "parentClass": "",
+                    "sorting": false,
+                    "type": "Entity",
+                    "uid": "374566356991"
+                },
+                "propertyGroup": {
+                    "properties": [
+                        {
+                            "allowedFileTypes": "",
+                            "maxItems": "1",
+                            "propertyDescription": "",
+                            "propertyIsExcludeField": true,
+                            "propertyIsL10nModeExclude": false,
+                            "propertyIsRequired": false,
+                            "propertyName": "name",
+                            "propertyType": "String",
+                            "uid": "934481024947"
+                        }
+                    ]
+                },
+                "relationGroup": {
+                    "relations": [
+                        {
+                            "foreignRelationClass": "",
+                            "lazyLoading": false,
+                            "propertyIsExcludeField": true,
+                            "relationDescription": "",
+                            "relationName": "shop",
+                            "relationType": "zeroToOne",
+                            "relationWire": "[wired]",
+                            "renderType": "selectSingle",
+                            "uid": "1429762203142"
+                        }
+                    ]
+                }
+            }
         }
     ],
     "properties": {
         "backendModules": [
             {
                 "actions": {
-                    "controllerActionCombinations": "Be\\Import => settings,run,configure"
+                    "controllerActionCombinations": "ImportConfiguration => list,create,edit,delete,show,new"
                 },
                 "description": "Import Settings for Magento2",
-                "key": "mage2import",
+                "key": "importconfiguration",
                 "mainModule": "tools",
                 "name": "Magento 2 Import",
                 "tabLabel": "Magento 2 Import"
             },
             {
                 "actions": {
-                    "controllerActionCombinations": "Be\\Products => list,show\nBe\\Categories => list,show"
+                    "controllerActionCombinations": "product => list,show,detail\nproductCategory => list,show,detail"
                 },
                 "description": "Products form Magento 2",
-                "key": "mage2products",
+                "key": "product",
                 "mainModule": "web",
                 "name": "Magento 2 Products",
                 "tabLabel": "Magento 2 Products"
@@ -265,12 +412,12 @@
         "plugins": [
             {
                 "actions": {
-                    "controllerActionCombinations": "products => list,show,detail\ncategories => list,show,detail",
+                    "controllerActionCombinations": "Product => list,show,detail\nProductCategory => list,show,detail",
                     "noncacheableActions": "",
-                    "switchableActions": "Display Items\nProducts->list; Products->show; Products->detail; Categories->list; Categories->show; Categories->detail;"
+                    "switchableActions": "Display Items\nproduct->list; product->detail; \nDisplay Items by Category\nproductCategory ->list; productCategory ->detail;"
                 },
                 "description": "Show imported Products form Magento 2",
-                "key": "mage2products",
+                "key": "product",
                 "name": "Magento 2 Product"
             }
         ],
@@ -288,10 +435,22 @@
                 "terminal": "SOURCES",
                 "uid": "206309638903"
             }
+        },
+        {
+            "src": {
+                "moduleId": 3,
+                "terminal": "relationWire_0",
+                "uid": "1429762203142"
+            },
+            "tgt": {
+                "moduleId": 2,
+                "terminal": "SOURCES",
+                "uid": "868668249754"
+            }
         }
     ],
     "log": {
-        "last_modified": "2019-04-18 09:23",
+        "last_modified": "2019-04-20 11:06",
         "extension_builder_version": "9.10.0",
         "be_user": " (1)"
     }
