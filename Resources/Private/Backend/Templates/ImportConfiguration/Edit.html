@@ -20,7 +20,7 @@
     <f:render partial="FormErrors" />
 
     <f:form action="update" name="importConfiguration" object="{importConfiguration}" >
-    <f:render partial="ImportConfiguration/FormFields" arguments="{importConfiguration:importConfiguration}" />
+    <f:render partial="ImportConfiguration/FormFields" arguments="{_all}" />
     <f:form.submit value="Save" />
     </f:form>
   </f:section>

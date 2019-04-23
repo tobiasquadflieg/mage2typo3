@@ -2,8 +2,7 @@
 defined('TYPO3_MODE') || die('Access denied.');
 
 call_user_func(
-    function()
-    {
+    function () {
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
             'Graphodata.Mage2typo3',
@@ -21,9 +20,9 @@ call_user_func(
             ]
         );
 
-    // wizards
-    \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
-        'mod {
+        // wizards
+        \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
+            'mod {
             wizards.newContentElement.wizardItems.plugins {
                 elements {
                     product {
@@ -39,14 +38,23 @@ call_user_func(
                 show = *
             }
        }'
-    );
-		$iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
-		
-			$iconRegistry->registerIcon(
-				'mage2typo3-plugin-product',
-				\TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
-				['source' => 'EXT:mage2typo3/Resources/Public/Icons/user_plugin_product.svg']
-			);
-		
+        );
+
+        /**
+         * Register the CLI Import Controller
+         */
+        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers']['Mage2typo3-Importcontroller'] = \Graphodata\Mage2typo3\Command\ImportCommandController::class;
+
+        /**
+         * Adding the IconRegistry and adding the EXT-Icon
+         */
+        $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
+
+        $iconRegistry->registerIcon(
+            'mage2typo3-plugin-product',
+            \TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider::class,
+            ['source' => 'EXT:mage2typo3/Resources/Public/Icons/user_plugin_product.svg']
+        );
+
     }
 );

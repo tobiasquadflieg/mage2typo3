@@ -23,8 +23,8 @@ call_user_func(
                 'importconfiguration', // Submodule key
                 '', // Position
                 [
-                    'ImportConfiguration' => 'list, create, edit, delete, show, new',
-                    'Shop' => 'list,create,edit,delete,new,show'
+                    'ImportConfiguration' => 'list, create, edit, delete, show, new, run, update',
+                    'Shop' => 'list,create,edit,delete,new,show,update'
 
                 ],
                 [

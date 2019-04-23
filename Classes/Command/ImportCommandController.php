@@ -18,8 +18,18 @@ use TYPO3\CMS\Extbase\Object\ObjectManager;
  */
 class ImportCommandController extends Command
 {
+    /**
+     * @var object|\TYPO3\CMS\Extbase\Object\ObjectManager
+     */
     protected $objectManager;
+    /**
+     * @var object|\TYPO3\CMS\Extbase\Configuration\ConfigurationManager
+     */
     protected $configurationManager;
+    /**
+     * @var \Graphodata\Mage2typo3\Domain\Model\ImportConfiguration
+     */
+    protected $importConfiguration;
 
     public function __construct(string $name = null)
     {
