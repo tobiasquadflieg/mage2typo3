@@ -41,11 +41,6 @@ call_user_func(
         );
 
         /**
-         * Register the CLI Import Controller
-         */
-        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers']['Mage2typo3-Importcontroller'] = \Graphodata\Mage2typo3\Command\ImportCommandController::class;
-
-        /**
          * Adding the IconRegistry and adding the EXT-Icon
          */
         $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);

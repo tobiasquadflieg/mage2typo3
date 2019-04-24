@@ -4,6 +4,8 @@ namespace Graphodata\Mage2typo3\Controller;
 
 
 use Graphodata\Mage2typo3\Command\ImportCommandController;
+use Graphodata\Mage2typo3\Command\ImportProductCommand;
+use Graphodata\Mage2typo3\Service\ApiService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
@@ -37,9 +39,9 @@ class ImportConfigurationController extends \TYPO3\CMS\Extbase\Mvc\Controller\Ac
     /**
      * Import Command Controller
      *
-     * @var \Graphodata\Mage2typo3\Command\ImportCommandController
+     * @var \Graphodata\Mage2typo3\Command\ImportProductCommand
      */
-    protected $importCommandController = null;
+    protected $importProductCommand = null;
 
     /**
      * @param \Graphodata\Mage2typo3\Domain\Repository\ImportConfigurationRepository $importConfigurationRepository
@@ -59,11 +61,11 @@ class ImportConfigurationController extends \TYPO3\CMS\Extbase\Mvc\Controller\Ac
     }
 
     /**
-     * @param \Graphodata\Mage2typo3\Command\ImportCommandController
+     * @param \Graphodata\Mage2typo3\Command\ImportProductCommand
      */
-    public function injectImportCommandController(ImportCommandController $importCommandController)
+    public function injectImportCommandController(ImportProductCommand $importProductCommand)
     {
-        $this->importCommandController = $importCommandController;
+        $this->importProductCommand = $importProductCommand;
     }
 
     /**
@@ -173,78 +175,29 @@ class ImportConfigurationController extends \TYPO3\CMS\Extbase\Mvc\Controller\Ac
             '',
             \TYPO3\CMS\Core\Messaging\AbstractMessage::INFO
         );
-        $requestFactory = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Http\RequestFactory::class);
-        $shopConf = $importConfiguration->getShop();
-        $jsonUserData = json_encode([
-            'username' => $shopConf->getUserName(),
-            'password' => $shopConf->getPassword()
-        ]);
-        DebuggerUtility::var_dump($jsonUserData);
-        $additionalOptions = [
-            'headers' => [
-                'Content-Type' => 'application/json',
-                'Content-Lenght' => strlen($jsonUserData)
-
-            ],
-            'body' => $jsonUserData,
-            'auth' => ['graphodata', 'webstage']
-        ];
-        $url = 'http://abschlussarbeit.dev3.graphodata.de/index.php/rest/V1/integration/admin/token';
-
-        $response = $requestFactory->request($url, 'POST', $additionalOptions);
-        if ($response->getStatusCode() === 200) {
-            if (strpos($response->getHeaderLine('Content-Type'), 'application/json') === 0) {
-                $adminkey = $response->getBody()->getContents();
+        $apiService = GeneralUtility::makeInstance(ApiService::class, $importConfiguration);
+        if ($apiService->getAuthToken()) {
+            $allproducts = $apiService->getProducts(1);
+        }
+        $productdetails = [];
+        foreach ($allproducts as $importProducts) {
+            foreach ($importProducts as $product) {
+                array_push($productdetails, $apiService->getProductdetails($product['sku']));
             }
         }
-        DebuggerUtility::var_dump($adminkey);
-        $additionalOptions = [
-            'headers' => [
-//                'Authorization' => 'Basic' . base64_encode('graphodata:webstage'),
-                'Content-Type' => 'application/json',
-                'Authorization' => 'Bearer ' . json_decode($adminkey),
 
-            ],
-        ];
-        DebuggerUtility::var_dump($additionalOptions);
-        $url = 'http://abschlussarbeit.dev3.graphodata.de/index.php/rest/V1/products?searchCriteria';
-        $requestFactory = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Http\RequestFactory::class);
-        $response = $requestFactory->request($url, 'GET', $additionalOptions);
-        if ($response->getStatusCode() === 200) {
-            if (strpos($response->getHeaderLine('Content-Type'), 'application/json') === 0) {
-                $content = $response->getBody()->getContents();
-                DebuggerUtility::var_dump($content);
-            }
-        }
+        DebuggerUtility::var_dump($productdetails);
+//        for ($i = 0; $i <= $maxItems; $i++) {
+//            $this->view->assign('itemsfound', count($allproducts));
+//        }
+//        foreach ($allproducts as $product) {
+//            DebuggerUtility::var_dump($apiService->getProductdetails($product->sku));
+//        }
+
 //        if ($response->getStatusCode() === 200) {
 //            if (strpos($response->getHeaderLine('Content-Type'), 'application/json') === 0) {
 //                $adminkey = $response->getBody()->getContents();
 //            }
 //        }
-
-//        DebuggerUtility::var_dump($shopConf);
-//        $userData = array("username" => $shopConf->getUserName(), "password" => $shopConf->getPassword());
-//        $ch = curl_init("http://graphodata:webstage@abschlussarbeit.dev3.graphodata.de/index.php/rest/V1/integration/admin/token");
-//        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-//        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($userData));
-//        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-//        curl_setopt($ch, CURLOPT_HTTPHEADER,
-//            array("Content-Type: application/json", "Content-Lenght: " . strlen(json_encode($userData))));
-//
-//        $token = curl_exec($ch);
-//        DebuggerUtility::var_dump($token);
-//
-//        $ch = curl_init("http://graphodata:webstage@abschlussarbeit.dev3.graphodata.de/index.php/rest/V1/products?searchCriteria");
-//        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
-//        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-//        curl_setopt($ch, CURLOPT_HTTPHEADER,
-//            array("Content-Type: application/json", "Authorization: Bearer " . json_decode($token)));
-//
-//        $result = curl_exec($ch);
-//        DebuggerUtility::var_dump($result);
-//        $this->view->assignMultiple([
-//            'key' => $token,
-//            'result' => $result
-//        ]);
     }
 }
