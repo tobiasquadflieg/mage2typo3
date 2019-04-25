@@ -5,9 +5,10 @@ namespace Graphodata\Mage2typo3\Controller;
 
 use Graphodata\Mage2typo3\Command\ImportCommandController;
 use Graphodata\Mage2typo3\Command\ImportProductCommand;
+use Graphodata\Mage2typo3\Domain\Model\Product;
 use Graphodata\Mage2typo3\Service\ApiService;
+use Graphodata\Mage2typo3\Service\MappingService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /***
  * This file is part of the "Mage2Typo3" Extension for TYPO3 CMS.
@@ -66,6 +67,17 @@ class ImportConfigurationController extends \TYPO3\CMS\Extbase\Mvc\Controller\Ac
     public function injectImportCommandController(ImportProductCommand $importProductCommand)
     {
         $this->importProductCommand = $importProductCommand;
+    }
+
+    protected function initializeAction()
+    {
+        //Create the Import folder structure
+        $resourceFactory = \TYPO3\CMS\Core\Resource\ResourceFactory::getInstance();
+        if (!$resourceFactory->getDefaultStorage()->hasFolder('mage2typo3/')) {
+            $resourceFactory->getDefaultStorage()->createFolder('mage2typo3/');
+            $parentFolder = $resourceFactory->getDefaultStorage()->getFolder('mage2typo3');
+            $resourceFactory->getDefaultStorage()->createFolder('import', $parentFolder);
+        }
     }
 
     /**
@@ -175,18 +187,25 @@ class ImportConfigurationController extends \TYPO3\CMS\Extbase\Mvc\Controller\Ac
             '',
             \TYPO3\CMS\Core\Messaging\AbstractMessage::INFO
         );
+        $productArr = [];
         $apiService = GeneralUtility::makeInstance(ApiService::class, $importConfiguration);
         if ($apiService->getAuthToken()) {
-            $allproducts = $apiService->getProducts(1);
-        }
-        $productdetails = [];
-        foreach ($allproducts as $importProducts) {
-            foreach ($importProducts as $product) {
-                array_push($productdetails, $apiService->getProductdetails($product['sku']));
+            $productcount = $apiService->getProductsCount();
+            $pages = ceil($productcount / 200);
+            for ($i = 1; $i <= $pages; $i++) {
+                array_push($productArr, $apiService->getProducts(200, $i));
             }
         }
+        $mapping = GeneralUtility::makeInstance(MappingService::class);
+        $mapping->map(Product::class, $productArr[0], $importConfiguration->getShop());
+//        $productdetails = [];
+//        foreach ($allproducts as $importProducts) {
+//            foreach ($importProducts as $product) {
+//                array_push($productdetails, $apiService->getProductdetails($product['sku']));
+//            }
+//        }
 
-        DebuggerUtility::var_dump($productdetails);
+//        DebuggerUtility::var_dump($productdetails);
 //        for ($i = 0; $i <= $maxItems; $i++) {
 //            $this->view->assign('itemsfound', count($allproducts));
 //        }

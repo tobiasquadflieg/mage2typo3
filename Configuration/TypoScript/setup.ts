@@ -87,3 +87,21 @@ module.tx_mage2typo3_web_mage2typo3product {
         layoutRootPaths.1 = {$module.tx_mage2typo3_product.view.layoutRootPath}
     }
 }
+config.tx_extbase {
+    persistence {
+        classes {
+            Graphodata\Mage2typo3\Domain\Model\FileReference {
+                mapping {
+                    tableName = sys_file_reference
+                    columns {
+                        uid_local.mapOnProperty = originalFileIdentifier
+                    }
+                }
+            }
+        }
+        objects {
+            TYPO3\CMS\Extbase\Domain\Model\FileReference.className = Graphodata\Mage2typo3\Domain\Model\FileReference
+        }
+        updateReferenceIndex = 1
+    }
+}

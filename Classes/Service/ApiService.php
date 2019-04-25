@@ -7,6 +7,7 @@ namespace Graphodata\Mage2typo3\Service;
 use TYPO3\CMS\Core\Http\RequestFactory;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /**
  * Class ApiService
@@ -85,11 +86,7 @@ class ApiService implements SingletonInterface
         }
     }
 
-    /**
-     * @return array
-     * @throws \HttpResponseException
-     */
-    public function getProducts(int $maxItems = 100)
+    public function getProductsCount(): int
     {
         if ($this->authToken == null) {
             throw new \UnexpectedValueException('get first an Authkey!');
@@ -101,13 +98,41 @@ class ApiService implements SingletonInterface
 
             ],
         ];
-        $url = $this->shopConfiguration->getUrl() . 'index.php/rest/V1/products?fields=items[sku]&searchCriteria';
+        $url = $this->shopConfiguration->getUrl() . 'index.php/rest/V1/products?searchCriteria[pageSize]=1&searchCriteria[currentPage]=9999999';
+        $response = $this->requestFactory->request($url, 'GET', $additionalOptions);
+        if ($response->getStatusCode() === 200) {
+            if (strpos($response->getHeaderLine('Content-Type'), 'application/json') === 0) {
+                $totalcount = json_decode($response->getBody()->getContents(), true);
+                return $totalcount['total_count'];
+
+            }
+        } else {
+            throw new \HttpResponseException('Couldnt get any Products');
+        }
+    }
+
+    /**
+     * @return array
+     * @throws \HttpResponseException
+     */
+    public function getProducts(int $maxItems = 100, int $page)
+    {
+        if ($this->authToken == null) {
+            throw new \UnexpectedValueException('get first an Authkey!');
+        }
+        $additionalOptions = [
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'Authorization' => 'Bearer ' . $this->authToken,
+
+            ],
+        ];
+        $url = $this->shopConfiguration->getUrl() . 'index.php/rest/V1/products?fields=items[sku,name,created_at,updated_at,media_gallery_entries,price]&searchCriteria[pageSize]=' . $maxItems . '&searchCriteria[currentPage]=' . $page;
         $response = $this->requestFactory->request($url, 'GET', $additionalOptions);
         if ($response->getStatusCode() === 200) {
             if (strpos($response->getHeaderLine('Content-Type'), 'application/json') === 0) {
                 $items = json_decode($response->getBody()->getContents(), true);
-                $chunkedItems = array_chunk($items['items'], (count($items['items']) / $maxItems));
-                return $chunkedItems;
+                return $items['items'];
             }
         } else {
             throw new \HttpResponseException('Couldnt get any Products');
