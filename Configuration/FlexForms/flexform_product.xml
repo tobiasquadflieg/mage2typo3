@@ -15,11 +15,11 @@
 								<items>
 									<numIndex index="0">
 										<numIndex index="0">Display Items</numIndex>
-										<numIndex index="1">product-&gt;list;product-&gt;detail</numIndex>
+										<numIndex index="1">Product-&gt;list;Product-&gt;detail</numIndex>
 									</numIndex>
 									<numIndex index="1">
 										<numIndex index="0">Display Items by Category</numIndex>
-										<numIndex index="1">productCategory -&gt;list;productCategory -&gt;detail</numIndex>
+										<numIndex index="1">ProductCategory -&gt;list;ProductCategory -&gt;detail</numIndex>
 									</numIndex>
 								</items>
 							</config>

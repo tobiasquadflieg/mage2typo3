@@ -68,6 +68,8 @@
 			</trans-unit>
 			<trans-unit id="tx_mage2typo3_domain_model_importconfiguration.shop">
 				<source>Shop</source>
+			</trans-unit>			<trans-unit id="tx_mage2typo3_domain_model_importconfiguration.storageid">
+				<source>Storage UID</source>
 			</trans-unit>
 			<trans-unit id="tx_mage2typo3_product.name">
 				<source>Magento 2 Product</source>

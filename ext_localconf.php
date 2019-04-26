@@ -6,7 +6,7 @@ call_user_func(
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
             'Graphodata.Mage2typo3',
-            'Product',
+            'product',
             [
                 'Product' => 'list, show, detail',
                 'ProductCategory' => 'list, show, detail'
@@ -15,8 +15,6 @@ call_user_func(
             [
                 'Product' => 'create, update, delete',
                 'ProductCategory' => 'create, update, delete',
-                'Shop' => 'create, update, delete',
-                'ImportConfiguration' => 'create, update, delete'
             ]
         );
 

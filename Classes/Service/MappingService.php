@@ -5,7 +5,6 @@ namespace Graphodata\Mage2typo3\Service;
 
 
 use Graphodata\Mage2typo3\Domain\Model\FileReference;
-use Graphodata\Mage2typo3\Domain\Model\Product;
 use Graphodata\Mage2typo3\Domain\Model\Shop;
 use Graphodata\Mage2typo3\Domain\Repository\ProductRepository;
 use TYPO3\CMS\Core\Core\Environment;
@@ -15,6 +14,7 @@ use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 use TYPO3\CMS\Extbase\Property\PropertyMapper;
 use TYPO3\CMS\Extbase\Property\PropertyMappingConfigurationBuilder;
 
@@ -62,19 +62,39 @@ class MappingService implements SingletonInterface
      */
     public function map($className, array $productstack, Shop $shop)
     {
+        /** @var \TYPO3\CMS\Extbase\Property\PropertyMappingConfiguration $mappingConfiguration */
         $mappingConfiguration = $this->objectManager->get(PropertyMappingConfigurationBuilder::class)->build();
+
+        //Allow the Property productImage to be a ObjectStorage
         $mappingConfiguration->forProperty('productImage')->allowAllProperties();
+
+        /** @var ProductRepository $productRepo */
         $productRepo = $this->objectManager->get(ProductRepository::class);
         $this->shop = $shop;
+
         foreach ($productstack as $product) {
+            //create the mappingarray to map the incomming Magentoarray to a TYPO3 Model
             $product['productImage'] = self::getImages($product['media_gallery_entries']);
-            $product['createdAt'] = $product['created_at'];
-            $product['updatedAt'] = $product['updated_at'];
+            $product['createdAt'] = new \DateTime($product['created_at']);
+            $product['updatedAt'] = new \DateTime($product['updated_at']);
             unset($product['media_gallery_entries'], $product['created_at'], $product['updated_at']);
-            $productModel = $this->objectManager->get(PropertyMapper::class)->convert($product, Product::class,
-                $mappingConfiguration);
-            $productRepo->add($productModel);
+
+            //Check if the Product already exists if not create a new one
+            $oldProduct = $productRepo->findBySku($product['sku'])->getFirst();
+            if ($oldProduct) {
+                $oldProduct->setUpdatedAt($product['updatedAt']);
+                $oldProduct->setName($product['name']);
+                $oldProduct->setPrice($product['price'] ?: 0);
+                $oldProduct->setProductImage($this->getNewImageObjectStorage($product['productImage']));
+                $productRepo->update($oldProduct);
+            } else {
+                /** @var \Graphodata\Mage2typo3\Domain\Model\Product $productModel */
+                $productModel = $this->objectManager->get(PropertyMapper::class)->convert($product, $className,
+                    $mappingConfiguration);
+                $productRepo->add($productModel);
+            }
         }
+        //Push all in to the DB
         $this->persistenceManager->persistAll();
 
     }
@@ -90,25 +110,42 @@ class MappingService implements SingletonInterface
      */
     protected function getImages(array $mediaEntries): array
     {
+
+        /** @var \TYPO3\CMS\Core\Resource\Folder $folderObj */
         $folderObj = $this->resourceFactory->getDefaultStorage()->getFolder('mage2typo3/import/');
         if (!$folderObj->hasFolder('images/')) {
             $folderObj->createFolder('images');
         }
+        /** @var \TYPO3\CMS\Core\Resource\Folder $imageFolder */
         $imageFolder = $folderObj->getSubfolder('images');
         $imagesRefs = [];
         foreach ($mediaEntries as $media) {
-            $filename = explode("/", $media['file']);
+            $filename = explode("/", $media['file']); // Get the fileName from the Image path String
+            /** @var string $url hold the Magento 2 URL for the Image */
+
             $url = $this->shop->getUrl() . 'pub/media/catalog/product' . $media['file'];
+            /** @var string $dest create the local destination path */
+
             $dest = Environment::getPublicPath() . '/' . $imageFolder->getPublicUrl() . $filename[3];
-            file_put_contents($dest, file_get_contents($url));
+            file_put_contents($dest, file_get_contents($url)); //Download the Image
+
+            /** @var File $file */
             $file = $this->resourceFactory->getFileObjectFromCombinedIdentifier($imageFolder->getPublicUrl() . $filename[3]);
             array_push($imagesRefs, $this->createFileReferenceFromFalFileObject($file));
         }
-
         return $imagesRefs;
 
     }
 
+    protected function getNewImageObjectStorage(array $fileRefarray)
+    {
+        /** @var ObjectStorage $newObj */
+        $newObj = new ObjectStorage();
+        foreach ($fileRefarray as $fileRef) {
+            $newObj->attach($fileRef);
+        }
+        return $newObj;
+    }
 
     /**
      * @param \TYPO3\CMS\Core\Resource\File $file

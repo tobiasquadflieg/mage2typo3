@@ -1,4 +1,5 @@
 <?php
+
 namespace Graphodata\Mage2typo3\Domain\Model;
 
 
@@ -8,6 +9,7 @@ namespace Graphodata\Mage2typo3\Domain\Model;
  * LICENSE.txt file that was distributed with this source code.
  *  (c) 2019 Tobias Quadflieg <Quadflieg@graphodata.de>, Graphodata AG
  ***/
+
 /**
  * ImportConfiguration
  */
@@ -21,14 +23,21 @@ class ImportConfiguration extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * shop
-     * 
+     *
      * @var \Graphodata\Mage2typo3\Domain\Model\Shop
      */
     protected $shop = null;
 
     /**
+     * storage Uid
+     *
+     * @var int $storageid
+     */
+    protected $storageid;
+
+    /**
      * Returns the name
-     * 
+     *
      * @return string
      */
     public function getName()
@@ -38,7 +47,7 @@ class ImportConfiguration extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * Sets the name
-     * 
+     *
      * @param string $name
      */
     public function setName(string $name)
@@ -48,7 +57,7 @@ class ImportConfiguration extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * Returns the shop
-     * 
+     *
      * @return \Graphodata\Mage2typo3\Domain\Model\Shop $shop
      */
     public function getShop()
@@ -58,12 +67,31 @@ class ImportConfiguration extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * Sets the shop
-     * 
+     *
      * @param \Graphodata\Mage2typo3\Domain\Model\Shop $shop
+     *
      * @return void
      */
     public function setShop(\Graphodata\Mage2typo3\Domain\Model\Shop $shop)
     {
         $this->shop = $shop;
     }
+
+    /**
+     * @return int
+     */
+    public function getStorageid(): int
+    {
+        return $this->storageid;
+    }
+
+    /**
+     * @param int $storageid
+     */
+    public function setStorageid(int $storageid): void
+    {
+        $this->storageid = $storageid;
+    }
+
+
 }

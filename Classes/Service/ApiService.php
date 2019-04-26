@@ -7,7 +7,6 @@ namespace Graphodata\Mage2typo3\Service;
 use TYPO3\CMS\Core\Http\RequestFactory;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /**
  * Class ApiService

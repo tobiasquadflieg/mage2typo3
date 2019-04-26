@@ -9,6 +9,7 @@ use Graphodata\Mage2typo3\Domain\Model\Product;
 use Graphodata\Mage2typo3\Service\ApiService;
 use Graphodata\Mage2typo3\Service\MappingService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Frontend\Page\PageRepository;
 
 /***
  * This file is part of the "Mage2Typo3" Extension for TYPO3 CMS.
@@ -45,6 +46,13 @@ class ImportConfigurationController extends \TYPO3\CMS\Extbase\Mvc\Controller\Ac
     protected $importProductCommand = null;
 
     /**
+     * Page Repository
+     *
+     * @var PageRepository
+     */
+    protected $pageRepository;
+
+    /**
      * @param \Graphodata\Mage2typo3\Domain\Repository\ImportConfigurationRepository $importConfigurationRepository
      */
     public function injectImportConfigurationRepository(
@@ -67,6 +75,11 @@ class ImportConfigurationController extends \TYPO3\CMS\Extbase\Mvc\Controller\Ac
     public function injectImportCommandController(ImportProductCommand $importProductCommand)
     {
         $this->importProductCommand = $importProductCommand;
+    }
+
+    public function injectPageRepository(PageRepository $pageRepository)
+    {
+        $this->pageRepository = $pageRepository;
     }
 
     protected function initializeAction()
@@ -131,8 +144,10 @@ class ImportConfigurationController extends \TYPO3\CMS\Extbase\Mvc\Controller\Ac
     public function editAction(\Graphodata\Mage2typo3\Domain\Model\ImportConfiguration $importConfiguration)
     {
         $shops = $this->shopRepository->findAll();
+        $page = $this->pageRepository->getPage($importConfiguration->getStorageid());
         $this->view->assign('shops', $shops);
         $this->view->assign('importConfiguration', $importConfiguration);
+        $this->view->assign('storagePage', $page);
     }
 
     /**
@@ -197,7 +212,10 @@ class ImportConfigurationController extends \TYPO3\CMS\Extbase\Mvc\Controller\Ac
             }
         }
         $mapping = GeneralUtility::makeInstance(MappingService::class);
-        $mapping->map(Product::class, $productArr[0], $importConfiguration->getShop());
+        foreach ($productArr as $product) {
+            $mapping->map(Product::class, $product, $importConfiguration->getShop());
+            break;
+        }
 //        $productdetails = [];
 //        foreach ($allproducts as $importProducts) {
 //            foreach ($importProducts as $product) {

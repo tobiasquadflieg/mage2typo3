@@ -9,6 +9,9 @@
 			<trans-unit id="shop.description">
 				<source>shop</source>
 			</trans-unit>
+			<trans-unit id="storageid.description">
+				<source>shop</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

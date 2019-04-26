@@ -142,6 +142,15 @@ return [
                 ],
             ],
         ],
+        'storageid' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:mage2typo3/Resources/Private/Language/locallang_db.xlf:tx_mage2typo3_domain_model_importconfiguration.name',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'int'
+            ],
+        ],
     
     ],
 ];

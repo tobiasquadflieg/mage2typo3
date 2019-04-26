@@ -1,56 +1,24 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
-	<f:layout name="Default" />
+<html data-namespace-typo3-fluid="true" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers">
+<f:layout name="Default"/>
 
-	This Template is responsible for creating a table of domain objects.
+This Template is responsible for creating a table of domain objects.
 
-	If you modify this template, do not forget to change the overwrite settings
-	in /Configuration/ExtensionBuilder/settings.yaml:
-	  Resources:
-		Private:
-		  Templates:
-			List.html: keep
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+Resources:
+Private:
+Templates:
+List.html: keep
 
-	Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
 
-	<f:section name="content">
-		<h1>Listing for Product</h1>
-
-		<f:flashMessages />
-
-		<table  class="tx_mage2typo3" >
-			<tr>
-				<th><f:translate key="tx_mage2typo3_domain_model_product.sku" /></th>
-				<th><f:translate key="tx_mage2typo3_domain_model_product.created_at" /></th>
-				<th><f:translate key="tx_mage2typo3_domain_model_product.updated_at" /></th>
-				<th><f:translate key="tx_mage2typo3_domain_model_product.name" /></th>
-				<th><f:translate key="tx_mage2typo3_domain_model_product.status" /></th>
-				<th><f:translate key="tx_mage2typo3_domain_model_product.tags" /></th>
-				<th><f:translate key="tx_mage2typo3_domain_model_product.price" /></th>
-				<th><f:translate key="tx_mage2typo3_domain_model_product.description" /></th>
-				<th><f:translate key="tx_mage2typo3_domain_model_product.short_description" /></th>
-				<th><f:translate key="tx_mage2typo3_domain_model_product.product_image" /></th>
-				<th> </th>
-				<th> </th>
-			</tr>
-
-			<f:for each="{products}" as="product">
-				<tr>
-					<td><f:link.action action="show" arguments="{product : product}"> {product.sku}</f:link.action></td>
-					<td><f:link.action action="show" arguments="{product : product}"> {product.createdAt -> f:format.date()}</f:link.action></td>
-					<td><f:link.action action="show" arguments="{product : product}"> {product.updatedAt -> f:format.date()}</f:link.action></td>
-					<td><f:link.action action="show" arguments="{product : product}"> {product.name}</f:link.action></td>
-					<td><f:link.action action="show" arguments="{product : product}"> {product.status}</f:link.action></td>
-					<td><f:link.action action="show" arguments="{product : product}"> {product.tags}</f:link.action></td>
-					<td><f:link.action action="show" arguments="{product : product}"> {product.price}</f:link.action></td>
-					<td><f:link.action action="show" arguments="{product : product}"> {product.description}</f:link.action></td>
-					<td><f:link.action action="show" arguments="{product : product}"> {product.shortDescription}</f:link.action></td>
-					<td><f:link.action action="show" arguments="{product : product}"> {product.productImage.originalResource.name}</f:link.action></td>
-					<td><f:link.action action="edit" arguments="{product : product}">Edit</f:link.action></td>
-					<td><f:link.action action="delete" arguments="{product : product}">Delete</f:link.action></td>
-				</tr>
-			</f:for>
-		</table>
-
-		<f:link.action action="new">New Product</f:link.action>
-	</f:section>
+<f:section name="content">
+    <div class="container">
+        <div class="row">
+            <f:for as="product" each="{products}">
+                <f:render arguments="{_all}" partial="Product/Card"/>
+            </f:for>
+        </div>
+    </div>
+</f:section>
 </html>

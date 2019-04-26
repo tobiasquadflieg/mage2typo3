@@ -1,8 +1,25 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
-<label for="name">
-    <f:translate key="tx_mage2typo3_domain_model_importconfiguration.name"/>
-</label><br/>
-<f:form.textfield property="name"/>
-<br/>
-<f:form.select property="shop" optionLabelField="shopName" options="{shops}" name="Shop"/>
+{namespace flux=FluidTYPO3\Flux\ViewHelpers}
+<html data-namespace-typo3-fluid="true"
+      flux:schemaLocation="https://fluidtypo3.org/schemas/flux-master.xsd"
+      xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:flux="http://typo3.org/ns/FluidTYPO3/Flux/ViewHelpers">
+<div class="form-group">
+    <label for="name">
+        <f:translate key="tx_mage2typo3_domain_model_importconfiguration.name"/>
+    </label><br/>
+    <f:form.textfield name="name" property="name"/>
+    <br/>
+</div>
+<div class="form-group">
+    <label for="shop">
+        <f:translate key="tx_mage2typo3_domain_model_importconfiguration.shop"/>
+    </label><br/>
+    <f:form.select name="Shop" optionLabelField="shopName" options="{shops}" property="shop"/>
+</div>
+<div class="form-group">
+    <label for="storageid">
+        <f:translate key="tx_mage2typo3_domain_model_importconfiguration.storageid"/>
+    </label><br/>
+    <f:form.textfield name="storageid" property="storageid"/>
+</div>
 </html>

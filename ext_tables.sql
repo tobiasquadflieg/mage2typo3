@@ -47,6 +47,7 @@ CREATE TABLE tx_mage2typo3_domain_model_importconfiguration (
 
 	name varchar(255) DEFAULT '' NOT NULL,
 	shop int(11) unsigned DEFAULT '0',
+	storageid int(11) unsigned DEFAULT '0',
 
 );
 
